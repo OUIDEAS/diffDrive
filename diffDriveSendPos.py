@@ -1,26 +1,5 @@
-import struct
-import array
 import sys
 import socket
-class fifo(object):
-    def __init__(self):
-        self.buf = []
-    def write(self, data):
-        self.buf += data
-        return len(data)
-    def read(self):
-        return self.buf.pop(0)
-
-f = fifo()
-
-
-
-foo = array.array('B',[253, 25, 0, 0, 157, 1, 1, 22, 0, 0, 1, 0, 0, 0, 201, 1, 185, 1, 83, 89, 83, 95, 77, 67, 95, 69, 83, 84, 95, 71, 82, 79, 85, 80, 6, 248, 165])
-number = foo[10:14]
-numb = struct.unpack('I',number)
-
-
-
 
 def main(sysargs):
 
@@ -31,12 +10,6 @@ def main(sysargs):
     print "Connecting to Vicon..."
     client = PyVicon()
     client.connect("192.168.0.197", 801)
-
-    print "Connecting to diffDrive"
-    UDP_IP = "192.168.0.195"
-    UDP_PORT = 5005
-    sock = socket.socket(socket.AF_INET,  # Internet
-                         socket.SOCK_DGRAM)
 
 
     if not client.isConnected():
@@ -75,16 +48,10 @@ def main(sysargs):
 
                 heading = rot[2]
 
-
                 #Sending data to PI
-                MESSAGE = (str(x_NED)+','+str(y_NED)+','+str(heading))
-                sock.sendto(MESSAGE, (UDP_IP, UDP_PORT))
+                # MESSAGE = (str(x_NED)+','+str(y_NED)+','+str(heading))
+                # sock.sendto(MESSAGE, (UDP_IP, UDP_PORT))
 
                 time.sleep(.05)
-
-
-
         time_usec += 1000
 
-if __name__ == '__main__':
-    exit(main(sys.argv))
