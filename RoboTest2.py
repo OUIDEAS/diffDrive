@@ -94,9 +94,9 @@ ts = time.time()
 while True:
     xnow = getPos()
 
-    if xnow[0] >2 or xnow[1]>2:
-        print('geofence breached')
-        break
+    # if xnow[0] >2 or xnow[1]>2:
+    #     print('geofence breached')
+    #     break
 
 
     params = VectorField.VFData()

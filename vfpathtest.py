@@ -5,8 +5,7 @@ import numpy as np
 
 def vPath(t):
 #   no path
-#     vel=[0;0];
-#     return;
+    return np.array([0,0])
 #slow moving path
     v = 0.005
     if(t<=5):
